@@ -24,7 +24,7 @@ namespace TestBackend.Models.DataManager
 
         public Product GetEntity(object key)
         {
-            return testContext.Products.SingleOrDefault(x => x.Id == (int)key);
+            return testContext.Products.SingleOrDefault(x => x.Id == (long)key);
         }
 
         public void Create(Product product)

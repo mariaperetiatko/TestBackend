@@ -66,7 +66,7 @@ namespace TestBackend.Controllers
         }
        
         [HttpDelete("DeleteProduct/{id}")]
-        public IActionResult DeleteBuilding(int id)
+        public IActionResult DeleteBuilding(long id)
         {
             Product product = productDB.GetEntity(id);
             if (product == null)
