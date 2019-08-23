@@ -19,7 +19,8 @@ namespace TestBackend.Models.DataManager
 
         public IEnumerable<Product> GetEntitySet()
         {
-            return testContext.Products;
+            return testContext.Products
+                .Include(x => x.Category);
         }
 
         public Product GetEntity(object key)
@@ -36,7 +37,6 @@ namespace TestBackend.Models.DataManager
         public void Update(Product product)
         {
             testContext.Entry(product).State = EntityState.Modified;
-
             Save();
         }
 

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TestBackend.Models;
 
 namespace TestBackend.Migrations
 {
     [DbContext(typeof(TestContext))]
-    partial class TestContextModelSnapshot : ModelSnapshot
+    [Migration("20190823113649_TestBackend.Models.Category")]
+    partial class TestBackendModelsCategory
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -31,23 +33,6 @@ namespace TestBackend.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1L,
-                            Name = "Fruit"
-                        },
-                        new
-                        {
-                            Id = 2L,
-                            Name = "Vegetable"
-                        },
-                        new
-                        {
-                            Id = 3L,
-                            Name = "Bakery"
-                        });
                 });
 
             modelBuilder.Entity("TestBackend.Models.Product", b =>
@@ -58,7 +43,9 @@ namespace TestBackend.Migrations
 
                     b.Property<double>("CaloricValue");
 
-                    b.Property<long?>("CategoryId");
+                    b.Property<int?>("CategoryId");
+
+                    b.Property<long?>("CategoryId1");
 
                     b.Property<double>("Cost");
 
@@ -69,7 +56,7 @@ namespace TestBackend.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoryId");
+                    b.HasIndex("CategoryId1");
 
                     b.ToTable("Products");
                 });
@@ -78,7 +65,7 @@ namespace TestBackend.Migrations
                 {
                     b.HasOne("TestBackend.Models.Category", "Category")
                         .WithMany("Products")
-                        .HasForeignKey("CategoryId")
+                        .HasForeignKey("CategoryId1")
                         .OnDelete(DeleteBehavior.SetNull);
                 });
 #pragma warning restore 612, 618

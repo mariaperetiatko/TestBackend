@@ -11,7 +11,9 @@ namespace TestBackend.Models
         public double Cost { get; set; }
         [Range(0.1, double.MaxValue)]
         public double CaloricValue { get; set; }
-        public string ProductType { get; set; }
         public string ProductDescription { get; set; }
+
+        public long? CategoryId { get; set; }
+        public Category Category { get; set; }
     }
 }
